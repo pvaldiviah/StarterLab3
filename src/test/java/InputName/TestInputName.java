@@ -36,12 +36,12 @@ public class TestInputName {
 		provideInput(input);
 	    // action
 	    InputName.main(null);
-	    System.out.println("***");
-	    System.out.println("Expected:");
-	    System.out.println(expected);
-	    System.out.println("Actual:");
-	    System.out.println(testOut.toString());
-	    System.out.println("***");
+//	    System.out.println("***");
+//	    System.out.println("Expected:");
+//	    System.out.println(expected);
+//	    System.out.println("Actual:");
+//	    System.out.println(testOut.toString());
+//	    System.out.println("***");
 	    assertEquals(expected, testOut.toString());
 
 		
