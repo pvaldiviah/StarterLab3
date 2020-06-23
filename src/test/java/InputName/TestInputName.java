@@ -1,32 +1,44 @@
 package InputName;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import java.io.*;
 
 public class TestInputName {
 	
+	private final InputStream systemIn = System.in;
+	private final PrintStream systemOut = System.out;
+	private ByteArrayInputStream testIn;
+	private ByteArrayOutputStream testOut;
+	
+	@BeforeEach
+	public void setUpOutput() {
+	    testOut = new ByteArrayOutputStream();
+	    System.setOut(new PrintStream(testOut));
+	}
+
+	@AfterEach
+	public void restoreSystemInputOutput() {
+	    System.setIn(systemIn);
+	    System.setOut(systemOut);
+	}
+	
+	private void provideInput(String data) {
+	    testIn = new ByteArrayInputStream(data.getBytes());
+	    System.setIn(testIn);
+	}
+	
 	@Test
 	public void testName() {		
-		
-		PrintStream originalOut = System.out;
-	    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	    System.setOut(new PrintStream(bos));
 
+		String expected = "What is your first name?\nHello Patrick\n";
+		String input = "Patrick";
+		provideInput(input);
 	    // action
 	    InputName.main(null);
 	    
-	    InputStream sysInBackup = System.in;
-		ByteArrayInputStream in = new ByteArrayInputStream("Patrick".getBytes());
-		System.setIn(in);
+	    assertEquals(expected, testOut.toString());
 
-	    // assertion
-	    assertEquals("What is your first name?\nHello Patrick\n", bos.toString());
-	    
-	    
-	    System.setIn(sysInBackup);
-		System.setOut(originalOut);
 		
 	}
 }
