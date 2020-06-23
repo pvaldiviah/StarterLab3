@@ -32,11 +32,16 @@ public class TestInputName {
 	public void testName() {		
 
 		String expected = "What is your first name?\nHello Patrick\n";
-		String input = "Patrick";
+		String input = "Patrick" + System.lineSeparator();
 		provideInput(input);
 	    // action
 	    InputName.main(null);
-	    
+	    System.out.println("***");
+	    System.out.println("Expected:");
+	    System.out.println(expected);
+	    System.out.println("Actual:");
+	    System.out.println(testOut.toString());
+	    System.out.println("***");
 	    assertEquals(expected, testOut.toString());
 
 		
