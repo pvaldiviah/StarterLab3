@@ -22,7 +22,7 @@ public class TestInputName {
 		System.setIn(in);
 
 	    // assertion
-	    assertEquals("Hello Patrick!\n", bos.toString());
+	    assertEquals("What is your first name?\nHello Patrick\n", bos.toString());
 	    
 	    
 	    System.setIn(sysInBackup);
